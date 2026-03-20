@@ -29,57 +29,58 @@ export function TopBar({
   }, [query, onSearch]);
 
   return (
-    <div className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
-
-     
+    <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      
+      {/* Left */}
       <div className="flex items-center gap-4">
-        <span className="text-orange-500 font-bold text-2xl">
+        <span className="text-orange-500 font-bold text-xl md:text-2xl">
           Getreat
         </span>
 
-        <div className="flex flex-col ml-25">
-          <span className="font-medium text-gray-900">
+        <div className="flex flex-col">
+          <span className="font-medium text-gray-900 text-sm md:text-base">
             {userName}
           </span>
-          <span className="text-sm text-gray-500">
+          <span className="text-xs md:text-sm text-gray-500">
             {userRole}
           </span>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-green-700" />
+      {/* Right */}
+      <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto">
+        
+        {/* Search */}
+        <div className="relative flex-1 md:flex-none">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-green-700" />
           <input
             type="text"
             placeholder="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="pl-12 pr-4 py-3 w-[250px], bg-green-50 border border-green-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="pl-10 pr-3 py-2 w-full md:w-[250px] bg-green-50 border border-green-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
           />
         </div>
 
-     
-        <div className="flex items-center bg-gray-50 border border-gray-200 rounded-full px-3 py-2 gap-4">
-
-    
-          <span className="text-green-600 text-base font-medium px-2">
+        {/* Date + Notifications + Profile */}
+        <div className="flex items-center bg-gray-50 border border-gray-200 rounded-full px-3 py-2 gap-3">
+          
+          {/* Date (hidden on very small screens) */}
+          <span className="hidden sm:inline text-green-600 text-sm font-medium px-2">
             {today}
           </span>
 
-        
+          {/* Notification */}
           <button
             onClick={onNotificationsClick}
-            className="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100"
+            className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100"
           >
-            <Bell className="h-8 w-8 text-gray-600" />
-
-          
-            <span className="absolute bottom-1 right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+            <Bell className="h-5 w-5 text-gray-600" />
+            <span className="absolute bottom-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
           </button>
 
-     
-          <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+          {/* Profile */}
+          <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
             <img
               src={profileImage}
               alt={userName}
